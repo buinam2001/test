@@ -1,0 +1,62 @@
+<!-- <div class="example-container">
+  <h2>To do</h2>
+
+  <div
+    cdkDropList
+    [cdkDropListData]="todo"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+    cdkDropListSortingDisabled
+    [cdkDropListConnectedTo]="['demo']"
+    #todoList="cdkDropList"
+  >
+    <div class="example-box" cdkDrag *ngFor="let item of todo">
+      <ul>
+        <li>
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> -->
+<!-- #todoList="cdkDropList" -->
+<!-- [cdkDropListConnectedTo]="[doneList]" -->
+<!-- (cdkDropListDropped)="drop($event)" -->
+
+<div cdkDropListGroup class="example-container">
+  <h2>Done</h2>
+
+  <div
+    [cdkDropListData]="todo"
+    (cdkDropListDropped)="drop($event)"
+    cdkDropList
+    #doneList="cdkDropList"
+    class="example-list"
+  >
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
+  </div>
+
+  <div style="position: relative;">
+    <div
+      cdkDropList
+      id="demo"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListData]="done"
+    >
+      <img
+        style="width: 100%"
+        src="https://www.researchgate.net/profile/Garland-Marshall-2/publication/49833972/figure/fig5/AS:668733781581831@1536449966319/The-AutoDock-docking-parameter-file-dpf-used-for-docking-one-of-the-compounds-in-the.png"
+        alt="aa"
+      />
+    </div>
+
+    <app-dragable
+    *ngFor="let item of done"
+    (newItemEvent)="handlevalue($event)"
+    [data]="item"
+  ></app-dragable>
+
+  </div>
+
+
+</div>
