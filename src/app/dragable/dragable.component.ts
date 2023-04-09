@@ -24,14 +24,17 @@ export class DragableComponent {
     //Add '${implements OnChanges}' to the class.
   }
 
-  handlecheck($event: any) {
+  handlecheck($event: any,check:any) {
     let id = this.data.id;
     let container = this.data.container;
+
+
 
     const obj = {
       id: id,
       container:container,
       ...$event,
+      check
     };
     this.newItemEvent.emit(obj);
   }

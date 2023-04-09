@@ -1,11 +1,11 @@
 <div
-  [style.top]="data.y+'px'"
-  [style.left]="data.x+'px'"
+  #check
+
   class="example-box"
   cdkDrag
-  (cdkDragEnded)="handlecheck($event)"
+  (cdkDragEnded)="handlecheck($event,check)"
   cdkDragBoundary=".example-boundary"
-  style="position: absolute; transform: translate(-50%,-50%);"
+
 >
   <img
     width="130"
@@ -14,3 +14,4 @@
     alt=""
   />
 </div>
+<!-- style="position: absolute; transform: translate(-50%, -50%)" -->

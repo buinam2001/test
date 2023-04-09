@@ -16,31 +16,42 @@ export class DemoComponent {
   index = 0;
   done: any = [];
 
-  handlevalue(obj: any) {
+  handlevalue(obj: any, con: any) {
     // console.log(obj.id);
     const index = this.done.findIndex((value: any) => {
       return value.id == obj.id;
     });
 
-    // const container =
-    //   obj.source.dropContainer.element.nativeElement.getBoundingClientRect();
+    const rect = obj.check.getBoundingClientRect();
+    // const rect = value.getBoundingClientRect();
+    const position = {
+      x: rect.left - con.offsetLeft,
+      y: rect.top - con.offsetTop,
+    };
+    console.log(position);
+
+    // const newobj = {
+    //   id: obj.id,
+    //   x: obj.dropPoint.x - obj.container.left,
+    //   y: obj.dropPoint.y - obj.container.top,
+    //   container: obj.container,
+    // };
+
     const newobj = {
       id: obj.id,
-      x: obj.dropPoint.x - obj.container.left,
-      y: obj.dropPoint.y - obj.container.top,
-      container:obj.container
+      x: position.x - 6,
+      y: position.y - 6,
+      container: obj.container,
     };
 
-this.done.splice(index, 1, newobj);
+    this.done.splice(index, 1, newobj);
 
-console.log(this.done)
     // this.done[index].x = newobj.x;
     // this.done[index].y = newobj.y;
     // console.log(newobj);
   }
 
   drop(event: CdkDragDrop<any>) {
-    console.log(event);
     if (event.container.element !== event.previousContainer.element) {
       const container =
         event.container.element.nativeElement.getBoundingClientRect();
@@ -51,7 +62,7 @@ console.log(this.done)
         id: this.index++,
         x: itemBounds.x - container.left,
         y: itemBounds.y - container.top,
-        container:container
+        container: container,
       };
 
       // console.log(positionInContainer);

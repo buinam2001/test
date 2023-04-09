@@ -1,25 +1,8 @@
-<!-- <div cdkDropListGroup>
-  <div class="example-container">
-
-    <div
-      cdkDropList #divBoard
-      [cdkDropListData]="topList" cdkDropListSortingDisabled="true"
-      class="top-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of topList" cdkDrag
-      [style.top.px]="item.top" [style.left.px]="item.left">{{item.name}}</div>
-    </div>
+<div #container style="position: relative; display: inline-block">
+  <div style="position: absolute; top: 100px; left: 20px">
+    <input #input (input)="handlevalue(input)" [(ngModel)]="name" type="text" />
   </div>
+  <canvas #canvas> </canvas>
+</div>
 
-  <div class="example-container">
-
-    <div
-      cdkDropList
-      [cdkDropListData]="bottomList"
-      class="bottom-list"
-      (cdkDropListDropped)="drop($event)"
-      cdkDropListOrientation="horizontal">
-      <div class="example-box" *ngFor="let item of bottomList" cdkDrag>{{item.name}}</div>
-    </div>
-  </div>
-</div> -->
+<button (click)="handleclick(input,container)">click</button>

@@ -1,31 +1,4 @@
-<!-- <div class="example-container">
-  <h2>To do</h2>
-
-  <div
-    cdkDropList
-    [cdkDropListData]="todo"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)"
-    cdkDropListSortingDisabled
-    [cdkDropListConnectedTo]="['demo']"
-    #todoList="cdkDropList"
-  >
-    <div class="example-box" cdkDrag *ngFor="let item of todo">
-      <ul>
-        <li>
-          {{ item }}
-        </li>
-      </ul>
-    </div>
-  </div>
-</div> -->
-<!-- #todoList="cdkDropList" -->
-<!-- [cdkDropListConnectedTo]="[doneList]" -->
-<!-- (cdkDropListDropped)="drop($event)" -->
-
 <div cdkDropListGroup class="example-container">
-  <h2>Done</h2>
-
   <div
     [cdkDropListData]="todo"
     (cdkDropListDropped)="drop($event)"
@@ -36,7 +9,15 @@
     <div class="example-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
   </div>
 
-  <div style="position: relative;">
+  <div
+    #con
+    style="
+      position: relative;
+      border: 5px solid red;
+      width: 700px;
+      display: inline-block;
+    "
+  >
     <div
       cdkDropList
       id="demo"
@@ -49,14 +30,32 @@
         alt="aa"
       />
     </div>
-
-    <app-dragable
+    <!-- <div
+      class="demo"
+      style="
+        width: 100px;
+        height: 100px;
+        background-color: black;
+        position: absolute;
+        left: 0;
+        top: 0;
+      "
+    ></div> -->
+    <div
+      style="position: absolute"
+      [style.top]="item.y + 'px'"
+      [style.left]="item.x + 'px'"
+      *ngFor="let item of done"
+    >
+      <app-dragable
+        (newItemEvent)="handlevalue($event, con)"
+        [data]="item"
+      ></app-dragable>
+    </div>
+    <!-- <app-dragable
     *ngFor="let item of done"
-    (newItemEvent)="handlevalue($event)"
+    (newItemEvent)="handlevalue($event, con)"
     [data]="item"
-  ></app-dragable>
-
+  ></app-dragable> -->
   </div>
-
-
 </div>
